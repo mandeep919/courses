@@ -1,0 +1,70 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+$primary-color: #c33241;
+$secondary-color: #f9ebec;
+
+.stat-item {
+	@apply flex flex-col items-center relative justify-center p-4 rounded-lg bg-white shadow-md;
+
+	.stat-number {
+		@apply text-5xl font-bold;
+		font-size: 50px;
+		color: $primary-color;
+		transition: font-size 0.3s ease, transform 0.3s ease;
+	}
+
+	.stat-headings {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		transition: transform 0.5s ease, width 0.5s ease;
+		transform: rotate(-90deg);
+		top: 0;
+		left: 50%;
+		transform-origin: top left;
+		width: 0;
+
+		h1 {
+			@apply text-lg font-bold text-left;
+			color: $primary-color;
+		}
+
+		h2,
+		h3 {
+			@apply text-sm text-left;
+			color: $secondary-color;
+		}
+	}
+
+	.icons {
+		display: flex;
+		gap: 10px;
+		margin-top: 10px;
+		transition: opacity 0.5s ease;
+		opacity: 0;
+	}
+	.view-courses {
+		opacity: 0;
+	}
+
+	&.active {
+		.stat-number {
+			font-size: 50px;
+		}
+
+		.stat-headings {
+			transform: rotate(0deg);
+			width: auto;
+		}
+
+		.icons {
+			opacity: 1;
+		}
+		.view-courses {
+			opacity: 1;
+		}
+	}
+}
