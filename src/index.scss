@@ -5,8 +5,66 @@
 $primary-color: #c33241;
 $secondary-color: #f9ebec;
 
+@keyframes move-to-fro {
+	0%,
+	100% {
+		transform: translateX(0);
+	}
+	50% {
+		transform: translateX(10px);
+	}
+}
+
 .stat-item {
-	@apply flex flex-col items-center relative justify-center p-4 rounded-lg bg-white shadow-md;
+	@apply flex flex-col items-center relative justify-center p-4 rounded-3xl bg-white shadow-md;
+	width: 240px;
+	cursor: pointer;
+	background: $secondary-color;
+	&.active {
+		width: 530px;
+		max-width: 530px;
+		background-color: $primary-color;
+		color: $secondary-color;
+		background-size: 300%;
+
+		.stat-number {
+			font-size: 50px;
+			color: $secondary-color;
+		}
+
+		.stat-headings {
+			transform: rotate(0deg);
+			width: auto;
+			transform: translate(100px, 100px);
+			max-width: 310px;
+			word-wrap: break-word;
+			white-space: normal;
+			color: $secondary-color;
+
+			h1 {
+				color: $secondary-color;
+				max-width: 350px;
+				word-wrap: break-word;
+				white-space: normal;
+			}
+		}
+
+		.icons {
+			opacity: 1;
+		}
+		.view-courses {
+			opacity: 1;
+		}
+	}
+
+	.icon {
+		margin-left: 0.5rem;
+		transition: transform 0.3s ease-in-out;
+	}
+
+	&:hover .icon {
+		animation: move-to-fro 1s ease-in-out infinite;
+	}
 
 	.stat-number {
 		@apply text-5xl font-bold;
@@ -18,23 +76,25 @@ $secondary-color: #f9ebec;
 	.stat-headings {
 		display: flex;
 		flex-direction: column;
-		align-items: center;
+		align-items: start;
 		justify-content: center;
 		transition: transform 0.5s ease, width 0.5s ease;
 		transform: rotate(-90deg);
-		top: 0;
-		left: 50%;
-		transform-origin: top left;
-		width: 0;
+		transform-origin: 70px -5px;
+		width: 270px;
 
 		h1 {
-			@apply text-lg font-bold text-left;
+			@apply font-bold text-left;
 			color: $primary-color;
+			text-transform: capitalize;
+			max-width: 240px;
+			word-wrap: break-word;
+			white-space: normal;
 		}
 
 		h2,
 		h3 {
-			@apply text-sm text-left;
+			@apply text-left;
 			color: $secondary-color;
 		}
 	}
@@ -48,23 +108,5 @@ $secondary-color: #f9ebec;
 	}
 	.view-courses {
 		opacity: 0;
-	}
-
-	&.active {
-		.stat-number {
-			font-size: 50px;
-		}
-
-		.stat-headings {
-			transform: rotate(0deg);
-			width: auto;
-		}
-
-		.icons {
-			opacity: 1;
-		}
-		.view-courses {
-			opacity: 1;
-		}
 	}
 }
